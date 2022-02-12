@@ -6,9 +6,9 @@ export const color: IColor = {
   'white-color': '#ffffff',
   'green-color': '#26851b',
   'blue-color': '#3b43b3',
+  'gray-color': '#9e9e9e',
 
-  'grey-color': '#cfd3cf',
-  'grey-color--light': '#DDDDDD',
+  'gray-color--light': '#DDDDDD',
 
   'black-color': '#222222',
   'black-color--light': '#00000080',

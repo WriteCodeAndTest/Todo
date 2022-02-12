@@ -5,4 +5,4 @@ lint:
 	npx eslint .
 
 test:
-	npm test
+	npm test --maxWorkers=2

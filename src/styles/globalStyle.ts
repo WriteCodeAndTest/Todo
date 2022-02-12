@@ -64,7 +64,7 @@ export const globalStyle = css`
 
   .container {
     width: 100%;
-    max-width: 1278px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 15px;
   }
@@ -136,13 +136,6 @@ export const globalStyle = css`
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 50px;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 1278px;
-    margin: 0 auto;
-    padding: 0 15px;
   }
 
   ::-webkit-scrollbar {
@@ -388,5 +381,12 @@ export const globalStyle = css`
       background-color: ${color['blue-color']};
       color: ${color['white-color']};
     }
+  }
+
+  #root {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;

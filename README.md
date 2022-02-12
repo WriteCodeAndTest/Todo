@@ -1,2 +1,2 @@
 ## Todo.
-[![Todo](../../actions/workflows/todo.yml/badge.svg)](../../Todo/actions/workflows/todo.yml)
+[![Todo CI](../../actions/workflows/todo.yml/badge.svg)](../../actions/workflows/todo.yml)

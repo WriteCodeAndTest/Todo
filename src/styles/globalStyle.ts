@@ -64,7 +64,7 @@ export const globalStyle = css`
 
   .container {
     width: 100%;
-    max-width: 1278px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 15px;
   }
@@ -136,13 +136,6 @@ export const globalStyle = css`
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 50px;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 1278px;
-    margin: 0 auto;
-    padding: 0 15px;
   }
 
   ::-webkit-scrollbar {
@@ -338,5 +331,62 @@ export const globalStyle = css`
 
   .bio-image:hover .bio-image-image {
     transform: scale(1.2) rotateZ(0);
+  }
+
+  // Buttons
+
+  .delete {
+    padding: 5px;
+    border: 1px solid ${color.primary};
+    border-radius: 3px;
+
+    color: ${color.primary};
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+    &:hover {
+      border-color: ${color.primary};
+      background-color: ${color.primary};
+      color: ${color['white-color']};
+    }
+  }
+
+  .status {
+    padding: 5px;
+    border: 1px solid ${color['green-color']};
+    border-radius: 3px;
+
+    color: ${color['green-color']};
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+    &:hover {
+      border-color: ${color['green-color']};
+      background-color: ${color['green-color']};
+      color: ${color['white-color']};
+    }
+  }
+
+  .manage {
+    padding: 10px;
+    border: 1px solid ${color['blue-color']};
+    border-radius: 7px;
+
+    color: ${color['blue-color']};
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+    &:hover {
+      border-color: ${color['blue-color']};
+      background-color: ${color['blue-color']};
+      color: ${color['white-color']};
+    }
+  }
+
+  #root {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;

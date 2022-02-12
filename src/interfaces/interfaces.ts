@@ -10,3 +10,11 @@ export interface IInput {
   placeholder: string;
   name: string;
 }
+
+export interface ITodos {
+  title: string;
+  data: string;
+  status: boolean;
+  notice: boolean;
+  id: string;
+}

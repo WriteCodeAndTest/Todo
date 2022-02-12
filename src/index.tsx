@@ -1,10 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { configure } from 'mobx';
 import { Global } from '@emotion/react';
 import { App } from '@components/App';
 import { globalStyle } from '@src/styles';
 
-ReactDOM.render(
+setTimeout(() =>
+  configure({
+    enforceActions: 'never',
+    reactionScheduler: (f) => setTimeout(f),
+  }),
+);
+
+render(
   <div className="container">
     <Global styles={globalStyle} />
     <App />

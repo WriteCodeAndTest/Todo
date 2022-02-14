@@ -39,12 +39,14 @@ const TodoAdd: FC = observer(() => {
           handleKey={handleKey}
           handleChange={handleChange}
           value={title}
+          testid="todoAddField"
         />
         <Btn
           type="submit"
           styleBtn="manage"
           isDisabled={!title}
           handleClick={handleClick}
+          testid="todoAddbtn"
         >
           Add
         </Btn>

@@ -214,26 +214,41 @@ export const globalStyle = css`
 
     box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
     transition: all 0.2s ease;
+    &:disabled {
+      border-color: ${color['gray-color']};
+
+      color: ${color['gray-color']};
+    }
+    &:enabled {
+      border-color: ${color['green-color--light']};
+
+      color: ${color['green-color--light']};
+
+      cursor: pointer;
+    }
+    &:enabled.active {
+      color: ${color['white-color']};
+    }
     &:enabled:hover {
-      border-color: ${color['blue-color']};
+      border-color: ${color['green-color--light']};
 
       color: ${color['white-color']};
 
-      background-color: ${color['blue-color']};
-      cursor: pointer;
+      background-color: ${color['green-color--light']};
     }
 
     &:active {
+      color: ${color['white-color']};
       box-shadow: none;
     }
   }
 
   .active {
-    border-color: ${color['blue-color']};
+    border-color: ${color['green-color--light']};
 
     color: ${color['white-color']};
 
-    background-color: ${color['blue-color']};
+    background-color: ${color['green-color--light']};
     box-shadow: none;
   }
 `;

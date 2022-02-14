@@ -9,11 +9,12 @@ const Btn: FC<IButton> = ({
   handleClick,
   isDisabled,
   isActive,
+  testid,
 }) => {
   return (
     <button
       className={isActive ? `${styleBtn} active` : styleBtn}
-      data-testid="btn"
+      data-testid={testid}
       type={type || 'button'}
       name={name}
       onClick={handleClick}

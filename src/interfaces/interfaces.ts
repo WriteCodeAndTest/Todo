@@ -7,6 +7,7 @@ export interface IButton {
   name?: string;
   handleClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   isActive?: boolean;
+  testid?: string;
 }
 
 export interface IInput {
@@ -17,6 +18,7 @@ export interface IInput {
   type: string;
   value: string;
   className?: string;
+  testid?: string;
 }
 
 export interface ITodos {

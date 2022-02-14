@@ -7,13 +7,15 @@ import { observer } from 'mobx-react';
 import { app, title, todosCount } from './AppStyle';
 
 const App: FC<React.ReactNode> = observer(() => {
-  const { todos } = TodoStore;
+  const { active, done } = TodoStore;
 
   return (
     <div css={app}>
       <div css={title}>
         <h1>Todo list</h1>
-        <p css={todosCount}>{todos.length} more to do, 0 done</p>
+        <p css={todosCount}>
+          {active} more to do, {done} done
+        </p>
       </div>
       <TodoAdd />
       <Search />

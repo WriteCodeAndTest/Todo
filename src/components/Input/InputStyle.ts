@@ -11,6 +11,6 @@ export const input = css`
 
   transition: all 0.2s ease;
   &:focus {
-    border-color: ${color['blue-color']};
+    border-color: ${color['green-color--light']};
   }
 `;

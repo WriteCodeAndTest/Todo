@@ -1,14 +1,24 @@
 import React, { FC } from 'react';
 import { IButton } from '@src/interfaces';
-import { btn } from './BtnStyle';
 
-const Btn: FC<IButton> = ({ children, type, styleBtn }) => {
+const Btn: FC<IButton> = ({
+  children,
+  type,
+  styleBtn,
+  name,
+  handleClick,
+  isDisabled,
+  isActive,
+  testid,
+}) => {
   return (
     <button
-      css={btn}
-      className={styleBtn}
-      data-testid="btn"
+      className={isActive ? `${styleBtn} active` : styleBtn}
+      data-testid={testid}
       type={type || 'button'}
+      name={name}
+      onClick={handleClick}
+      disabled={isDisabled}
     >
       {children}
     </button>

@@ -31,6 +31,7 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'import', 'jest'],
   rules: {
     'react/button-has-type': 'off',
+    'lines-between-class-members': 'off',
     'import/no-unresolved': 'error',
     'import/extensions': [
       'error',
@@ -52,7 +53,7 @@ module.exports = {
       },
     ],
     'no-console': [
-      'error',
+      'warn',
       {
         allow: ['warn', 'error'],
       },

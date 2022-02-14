@@ -5,4 +5,5 @@ export const todoAdd = css`
   gap: 5px;
   min-width: 320px;
   max-width: 800px;
+  margin-bottom: 15px;
 `;

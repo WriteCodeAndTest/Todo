@@ -6,10 +6,10 @@ import { Btn } from '../Btn';
 import { search, searchField, searchFilter } from './SearchStyle';
 
 const Search: FC = observer(() => {
-  const { query, setQuery, sortType, setSortType, searchRequest } = TodoStore;
+  const { query, setQuery, sortType, setSortType, todoFilter } = TodoStore;
 
   const handleKey = (e: KeyboardEvent<HTMLInputElement>) =>
-    e.key === 'Enter' ? searchRequest(query) : undefined;
+    e.key === 'Enter' ? todoFilter(query) : undefined;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     setQuery(e.target.value);
@@ -17,13 +17,13 @@ const Search: FC = observer(() => {
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { name } = e.currentTarget;
     setSortType(name);
-    searchRequest(query);
+    todoFilter(query);
   };
 
   return (
     <div data-testid="search" css={search}>
       <Input
-        placeholder="type to search"
+        placeholder="type to search and press Enter"
         css={searchField}
         name="search"
         type="text"

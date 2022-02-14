@@ -3,16 +3,18 @@ import { TodoStore } from '@src/store';
 import { observer } from 'mobx-react';
 import {
   todoListWrap,
-  bold,
+  markStyle,
   todoStyle,
   controlBar,
   countStyle,
-  done,
+  todoDoneStyle,
+  titleDoneStyle,
 } from './TodoListStyle';
 import { Btn } from '../Btn';
 
 const TodoList: FC = observer(() => {
-  const { renderTodos, deleteTodo, markTodo, setStatus } = TodoStore;
+  const { query, renderTodos, deleteTodo, markTodo, setStatus, todoFilter } =
+    TodoStore;
 
   const handleClickDel = (id: string) => {
     deleteTodo(id);
@@ -29,6 +31,7 @@ const TodoList: FC = observer(() => {
 
     if (target.getAttribute && target.getAttribute('class') !== 'mark') {
       setStatus(id);
+      todoFilter(query);
     }
   };
 
@@ -37,17 +40,24 @@ const TodoList: FC = observer(() => {
       {renderTodos.length ? (
         renderTodos.map(({ id, title, mark, status }, ind, arr) => {
           const count = arr.length - ind;
+          let colorStatus = todoStyle;
+
+          if (status) {
+            colorStatus = todoDoneStyle;
+          } else if (!status && mark) {
+            colorStatus = markStyle;
+          }
 
           return (
             <div
               aria-hidden="true"
               key={id}
-              css={mark ? bold : todoStyle}
+              css={colorStatus}
               onClick={(e) => handleClickStatus(e, id)}
             >
               <div>
                 <p css={countStyle}>{count}</p>
-                <div css={status ? done : ''}>{title}</div>
+                <div css={status ? titleDoneStyle : ''}>{title}</div>
               </div>
               <div css={controlBar}>
                 <Btn

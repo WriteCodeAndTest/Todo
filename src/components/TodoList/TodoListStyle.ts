@@ -14,13 +14,18 @@ export const todoStyle = css`
   padding: 10px;
   border-radius: 5px;
 
-  background-color: ${color['black-color--light']};
+  background-color: ${color['green-color--light']};
   box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
 `;
 
-export const bold = css`
+export const markStyle = css`
   ${todoStyle}
   background-color: ${color['red-color--light']};
+`;
+
+export const todoDoneStyle = css`
+  ${todoStyle}
+  background-color: ${color['black-color--light']};
 `;
 
 export const controlBar = css`
@@ -34,7 +39,7 @@ export const countStyle = css`
   font-size: 22px;
 `;
 
-export const done = css`
+export const titleDoneStyle = css`
   text-decoration: line-through;
   text-decoration-color: ${color.primary};
 `;

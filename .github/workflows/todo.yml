@@ -1,4 +1,4 @@
-name: Todo
+name: Todo CI
 
 on:
   push:

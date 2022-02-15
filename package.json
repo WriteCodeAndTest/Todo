@@ -6,8 +6,8 @@
   "scripts": {
     "build:client": "webpack --config config/webpack.prod.js",
     "start:client": "webpack serve --config config/webpack.dev.js",
-    "lint": "eslint ./client/src --cache && echo \"No linting errors\"",
-    "lint:fix": "eslint ./client/src --fix",
+    "lint": "eslint ./client/src ./server --cache",
+    "lint:fix": "eslint ./client/src ./server --fix",
     "clean": "rm -rf dist",
     "loki:update": "npm run build-storybook && npx loki update --requireReference --reactUri file:./storybook-static",
     "loki:approve": "npx loki approve",

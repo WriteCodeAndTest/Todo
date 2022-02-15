@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { App } from '../../src/components/App';
+import { App } from '../../client/src/components/App';
 
 describe('TodoApp', () => {
   it('Render TodoApp component', () => {

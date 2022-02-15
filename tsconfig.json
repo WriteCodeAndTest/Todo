@@ -51,12 +51,12 @@
     "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
     "baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
     "paths": {
-      "@src/*": ["src/*"],
-      "@utils/*": ["src/utils/*"],
-      "@assets/*": ["src/assets/*"],
-      "@components/*": ["src/components/*"],
-      "@search/*": ["src/components/Search/components/*"],
-      "@shared/*": ["src/components/shared/*"]
+      "@src/*": ["client/src/*"],
+      "@utils/*": ["client/src/utils/*"],
+      "@assets/*": ["client/src/assets/*"],
+      "@components/*": ["client/src/components/*"],
+      "@search/*": ["client/src/components/Search/components/*"],
+      "@shared/*": ["client/src/components/shared/*"]
     } /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */,
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     "typeRoots": [
@@ -86,6 +86,6 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
     "resolveJsonModule": true
   },
-  "include": ["src/*", "typings/*"],
+  "include": ["client/src/*", "typings/*"],
   "exclude": ["node_modules", "tests/**/*.tsx"]
 }

@@ -30,6 +30,8 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'import', 'jest'],
   rules: {
+    'class-methods-use-this': 'off',
+    'consistent-return': 'off',
     'react/button-has-type': 'off',
     'lines-between-class-members': 'off',
     'import/no-unresolved': 'error',

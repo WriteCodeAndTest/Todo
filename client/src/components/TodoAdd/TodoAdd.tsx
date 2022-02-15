@@ -6,7 +6,7 @@ import { todoAdd } from './TodoAddStyle';
 import { Btn } from '../Btn';
 import { Input } from '../Input';
 
-const random = () => Math.floor(Math.random() * (1000 - 1) + 1);
+// const random = () => Math.floor(Math.random() * (1000 - 1) + 1);
 
 const TodoAdd: FC = observer(() => {
   const { title, setTodos, setTitle } = TodoStore;
@@ -16,7 +16,7 @@ const TodoAdd: FC = observer(() => {
     data: new Date().toLocaleDateString(),
     status: false,
     mark: false,
-    id: `${random()}`,
+    // id: `${random()}`,
   };
 
   const handleClick = () => {

@@ -26,5 +26,13 @@ export interface ITodos {
   data: string;
   status: boolean;
   mark: boolean;
-  id: string;
+  id?: string;
+}
+
+export interface ITodosRequest {
+  title?: string;
+  data?: string;
+  status?: boolean;
+  mark?: boolean;
+  _id?: string;
 }

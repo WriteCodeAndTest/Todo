@@ -1,22 +1,19 @@
 import React, { FC, KeyboardEvent, ChangeEvent } from 'react';
 import { TodoStore } from '@src/store';
-import { ITodos } from '@src/interfaces';
+import { IState } from '@src/interfaces';
 import { observer } from 'mobx-react';
 import { todoAdd } from './TodoAddStyle';
 import { Btn } from '../Btn';
 import { Input } from '../Input';
 
-// const random = () => Math.floor(Math.random() * (1000 - 1) + 1);
-
 const TodoAdd: FC = observer(() => {
   const { title, setTodos, setTitle } = TodoStore;
 
-  const initialState: ITodos = {
+  const initialState: IState = {
     title,
     data: new Date().toLocaleDateString(),
     status: false,
     mark: false,
-    // id: `${random()}`,
   };
 
   const handleClick = () => {

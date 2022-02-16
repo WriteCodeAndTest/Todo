@@ -1,55 +1,48 @@
 import { axiosInstance } from '@src/utils';
-import { ITodos, ITodosRequest } from '@src/interfaces';
+import { ITodosRequest } from '@src/interfaces';
 
-const createTodo = async (query: string, todo: ITodos) => {
+const createTodo = async (todo: ITodosRequest) => {
   try {
     const todoResponse = await axiosInstance({
-      url: `${query}`,
       method: 'post',
       data: todo,
     });
 
-    console.log(todoResponse);
+    return todoResponse;
   } catch (e: any) {
     console.log(e.message);
   }
 };
 
-const getAllTodos = async (query: string) => {
+const getAllTodos = async () => {
   try {
     const response = await axiosInstance({
-      url: `${query}`,
       headers: { 'Content-Type': 'applicatoin/json' },
     });
 
-    console.log(response);
+    return response;
   } catch (e: any) {
     console.log(e.message);
   }
 };
 
-const updateTodo = async (query: string, data: ITodosRequest) => {
+const updateTodo = async (data: ITodosRequest) => {
   try {
-    const response = await axiosInstance({
-      url: `${query}`,
+    await axiosInstance({
       method: 'put',
       data,
     });
-
-    console.log(response);
   } catch (e: any) {
     console.log(e.message);
   }
 };
 
-const deleteTodo = async (query: string, id: string) => {
+const deleteTodo = async (id: string) => {
   try {
-    const response = await axiosInstance({
-      url: `${query}/${id}`,
+    await axiosInstance({
+      url: `${id}`,
       method: 'delete',
     });
-
-    console.log(response);
   } catch (e: any) {
     console.log(e.message);
   }

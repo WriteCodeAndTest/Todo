@@ -1,11 +1,15 @@
 import { makeAutoObservable } from 'mobx';
-import { ITodos } from '@src/interfaces';
+import { ITodos, IState } from '@src/interfaces';
+import { getAllTodos, createTodo, updateTodo, deleteTodo } from '@src/module';
+import { delay } from '@utils/delay.utils';
 
 class Store {
   constructor() {
     makeAutoObservable(this);
   }
 
+  isLoading = false;
+  requestError = null;
   todos: ITodos[] = [];
   renderTodos: ITodos[] = [];
   title = '';
@@ -24,23 +28,52 @@ class Store {
     this.sortType = value;
   };
 
-  deleteTodo = (id: string) => {
-    this.todos = this.todos.filter((todo) => todo.id !== id);
-    this.renderTodos = this.todos;
+  deleteTodo = async (id: string) => {
+    try {
+      this.todos = this.todos.filter((todo) => todo.id !== id);
+      this.renderTodos = this.todos;
+      await deleteTodo(id);
+    } catch (e: any) {
+      this.requestError = e;
+    }
   };
 
-  markTodo = (id: string) => {
-    this.todos = this.todos.map((todo) =>
-      todo.id === id ? { ...todo, mark: !todo.mark } : todo,
-    );
-    this.renderTodos = this.todos;
+  markTodo = async (id: string) => {
+    let currentMark;
+    try {
+      this.todos = this.todos.map((todo) => {
+        if (todo.id === id) {
+          currentMark = !todo.mark;
+          return { ...todo, mark: currentMark };
+        }
+        return todo;
+      });
+
+      await updateTodo({ _id: id, mark: currentMark });
+      this.renderTodos = this.todos;
+      this.todoFilter(this.query);
+    } catch (e: any) {
+      this.requestError = e;
+    }
   };
 
-  setStatus = (id: string) => {
-    this.todos = this.todos.map((todo) =>
-      todo.id === id ? { ...todo, status: !todo.status } : todo,
-    );
-    this.renderTodos = this.todos;
+  setStatus = async (id: string) => {
+    let currentStatus;
+    try {
+      this.todos = this.todos.map((todo) => {
+        if (todo.id === id) {
+          currentStatus = !todo.status;
+          return { ...todo, status: currentStatus };
+        }
+        return todo;
+      });
+
+      await updateTodo({ _id: id, status: currentStatus });
+      this.renderTodos = this.todos;
+      this.todoFilter(this.query);
+    } catch (e: any) {
+      this.requestError = e;
+    }
   };
 
   statusFilter = () => {
@@ -64,10 +97,44 @@ class Store {
     this.searchFilter(value);
   };
 
-  setTodos = (value: ITodos) => {
-    this.todos.unshift(value);
-    this.renderTodos = this.todos;
-    this.title = '';
+  setTodos = async (value: IState) => {
+    try {
+      const result = await createTodo(value);
+      if (!result) return console.log('Server error');
+
+      if (result.status === 200) {
+        const { data } = result;
+        this.todos.push({ ...data, id: data._id });
+        this.renderTodos = this.todos;
+        this.todoFilter(this.query);
+      }
+      this.title = '';
+    } catch (e: any) {
+      this.requestError = e;
+    }
+  };
+
+  getTodos = async () => {
+    try {
+      this.isLoading = true;
+
+      const result = await getAllTodos();
+      await delay(2000);
+
+      if (!result) return console.log('Server error');
+
+      if (result.status === 200) {
+        this.todos = result.data.map((todo: ITodos) => ({
+          ...todo,
+          id: todo._id,
+        }));
+        this.renderTodos = this.todos;
+      }
+    } catch (e: any) {
+      this.requestError = e;
+    } finally {
+      this.isLoading = false;
+    }
   };
 
   get done() {

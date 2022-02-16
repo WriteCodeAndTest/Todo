@@ -1,6 +1,9 @@
 import React, { FC, MouseEvent } from 'react';
 import { TodoStore } from '@src/store';
 import { observer } from 'mobx-react';
+import { Loader } from '@components/Loader';
+import { Message } from '@components/Message';
+
 import {
   todoListWrap,
   markStyle,
@@ -36,54 +39,59 @@ const TodoList: FC = observer(() => {
   };
 
   return (
-    <div css={todoListWrap} data-testid="todoList">
-      {renderTodos.length ? (
-        renderTodos.map(({ id, title, mark, status }, ind, arr) => {
-          const count = arr.length - ind;
-          let colorStatus = todoStyle;
+    <>
+      <div css={todoListWrap} data-testid="todoList">
+        {renderTodos.length
+          ? [...renderTodos]
+              .reverse()
+              .map(({ id, title, mark, status }, ind, arr) => {
+                const count = arr.length - ind;
 
-          if (status) {
-            colorStatus = todoDoneStyle;
-          } else if (!status && mark) {
-            colorStatus = markStyle;
-          }
+                let colorStatus = todoStyle;
 
-          return (
-            <div
-              aria-hidden="true"
-              key={id}
-              css={colorStatus}
-              onClick={(e) => handleClickStatus(e, id)}
-            >
-              <div>
-                <p css={countStyle}>{count}</p>
-                <div css={status ? titleDoneStyle : ''}>{title}</div>
-              </div>
-              <div css={controlBar}>
-                <Btn
-                  handleClick={() => handleClickDel(id)}
-                  styleBtn="delete"
-                  name="delete"
-                  data-testid="deleteBtn"
-                >
-                  Delete
-                </Btn>
-                <Btn
-                  handleClick={() => handleClickMark(id)}
-                  styleBtn="mark"
-                  name="mark"
-                  data-testid="markBtn"
-                >
-                  {mark ? 'UnMark' : 'Mark'}
-                </Btn>
-              </div>
-            </div>
-          );
-        })
-      ) : (
-        <div>Add todo</div>
-      )}
-    </div>
+                if (status) {
+                  colorStatus = todoDoneStyle;
+                } else if (!status && mark) {
+                  colorStatus = markStyle;
+                }
+
+                return (
+                  <div
+                    aria-hidden="true"
+                    key={id}
+                    css={colorStatus}
+                    onClick={(e) => handleClickStatus(e, id)}
+                  >
+                    <div>
+                      <p css={countStyle}>{count}</p>
+                      <div css={status ? titleDoneStyle : ''}>{title}</div>
+                    </div>
+                    <div css={controlBar}>
+                      <Btn
+                        handleClick={() => handleClickDel(id)}
+                        styleBtn="delete"
+                        name="delete"
+                        data-testid="deleteBtn"
+                      >
+                        Delete
+                      </Btn>
+                      <Btn
+                        handleClick={() => handleClickMark(id)}
+                        styleBtn="mark"
+                        name="mark"
+                        data-testid="markBtn"
+                      >
+                        {mark ? 'UnMark' : 'Mark'}
+                      </Btn>
+                    </div>
+                  </div>
+                );
+              })
+          : null}
+      </div>
+      <Message>Add todo</Message>
+      <Loader />
+    </>
   );
 });
 

@@ -135,7 +135,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.stories.tsx', './src/store/action/index.ts'],
+      files: ['*.stories.tsx'],
       rules: {
         'no-restricted-syntax': ['off'],
       },

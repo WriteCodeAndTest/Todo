@@ -119,7 +119,7 @@ class Store {
       this.isLoading = true;
 
       const result = await getAllTodos();
-      await delay(2000);
+      await delay(1000);
 
       if (!result) return console.log('Server error');
 

@@ -34,7 +34,7 @@ const Search: FC = observer(() => {
       <div css={searchFilter}>
         <Btn
           handleClick={handleClick}
-          styleBtn="manage"
+          styleBtn="manageBtn"
           name="all"
           data-testid="allBtn"
           isActive={sortType === 'all'}
@@ -44,7 +44,7 @@ const Search: FC = observer(() => {
 
         <Btn
           handleClick={handleClick}
-          styleBtn="manage"
+          styleBtn="manageBtn"
           name="active"
           data-testid="activeBtn"
           isActive={sortType === 'active'}
@@ -54,7 +54,7 @@ const Search: FC = observer(() => {
 
         <Btn
           handleClick={handleClick}
-          styleBtn="manage"
+          styleBtn="manageBtn"
           name="done"
           data-testid="doneBtn"
           isActive={sortType === 'done'}

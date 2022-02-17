@@ -47,3 +47,14 @@ export interface ITodosRequest {
   _id?: string;
   id?: string;
 }
+
+export interface ITodoItem {
+  id: string;
+  title: string;
+  status: boolean;
+  mark: boolean;
+  count: number;
+  handleClickDel: () => void;
+  handleClickMark: () => void;
+  handleClickStatus: (e: MouseEvent<HTMLDivElement>) => void;
+}

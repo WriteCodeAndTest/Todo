@@ -40,7 +40,7 @@ const TodoAdd: FC = observer(() => {
         />
         <Btn
           type="submit"
-          styleBtn="manage"
+          styleBtn="manageBtn"
           isDisabled={!title}
           handleClick={handleClick}
           testid="todoAddbtn"

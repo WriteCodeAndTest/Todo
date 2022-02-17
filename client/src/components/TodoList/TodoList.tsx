@@ -3,40 +3,13 @@ import { TodoStore } from '@src/store';
 import { observer } from 'mobx-react';
 import { Loader } from '@components/Loader';
 import { Message } from '@components/Message';
+import { TodoItem } from '@components/TodoItem';
 
-import {
-  todoListWrap,
-  markStyle,
-  todoStyle,
-  controlBar,
-  countStyle,
-  todoDoneStyle,
-  titleDoneStyle,
-} from './TodoListStyle';
-import { Btn } from '../Btn';
+import { todoListWrap } from './TodoListStyle';
 
 const TodoList: FC = observer(() => {
-  const { query, renderTodos, deleteTodo, markTodo, setStatus, todoFilter } =
+  const { renderTodos, query, deleteTodo, markTodo, setStatus, todoFilter } =
     TodoStore;
-
-  const handleClickDel = (id: string) => {
-    deleteTodo(id);
-  };
-
-  const handleClickMark = (id: string) => {
-    markTodo(id);
-  };
-
-  const handleClickStatus = (e: MouseEvent<HTMLDivElement>, id: string) => {
-    const target = e.target as typeof e.target & {
-      getAttribute: (a: string) => string;
-    };
-
-    if (target.getAttribute && target.getAttribute('class') !== 'mark') {
-      setStatus(id);
-      todoFilter(query);
-    }
-  };
 
   return (
     <>
@@ -47,44 +20,40 @@ const TodoList: FC = observer(() => {
               .map(({ id, title, mark, status }, ind, arr) => {
                 const count = arr.length - ind;
 
-                let colorStatus = todoStyle;
+                const handleClickDel = () => {
+                  deleteTodo(id);
+                };
 
-                if (status) {
-                  colorStatus = todoDoneStyle;
-                } else if (!status && mark) {
-                  colorStatus = markStyle;
-                }
+                const handleClickMark = () => {
+                  markTodo(id);
+                };
+
+                const handleClickStatus = (e: MouseEvent<HTMLDivElement>) => {
+                  const target = e.target as typeof e.target & {
+                    getAttribute: (a: string) => string;
+                  };
+
+                  if (
+                    target.getAttribute &&
+                    target.getAttribute('class') !== 'mark'
+                  ) {
+                    setStatus(id);
+                    todoFilter(query);
+                  }
+                };
 
                 return (
-                  <div
-                    aria-hidden="true"
+                  <TodoItem
+                    handleClickDel={handleClickDel}
+                    handleClickMark={handleClickMark}
+                    handleClickStatus={handleClickStatus}
                     key={id}
-                    css={colorStatus}
-                    onClick={(e) => handleClickStatus(e, id)}
-                  >
-                    <div>
-                      <p css={countStyle}>{count}</p>
-                      <div css={status ? titleDoneStyle : ''}>{title}</div>
-                    </div>
-                    <div css={controlBar}>
-                      <Btn
-                        handleClick={() => handleClickDel(id)}
-                        styleBtn="delete"
-                        name="delete"
-                        data-testid="deleteBtn"
-                      >
-                        Delete
-                      </Btn>
-                      <Btn
-                        handleClick={() => handleClickMark(id)}
-                        styleBtn="mark"
-                        name="mark"
-                        data-testid="markBtn"
-                      >
-                        {mark ? 'UnMark' : 'Mark'}
-                      </Btn>
-                    </div>
-                  </div>
+                    id={id}
+                    title={title}
+                    mark={mark}
+                    status={status}
+                    count={count}
+                  />
                 );
               })
           : null}

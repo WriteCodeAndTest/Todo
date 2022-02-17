@@ -1,5 +1,10 @@
 import React, { FC } from 'react';
 import { IButton } from '@src/interfaces';
+import * as btn from './BtnStyle';
+
+interface LooseObject {
+  [key: string]: any;
+}
 
 const Btn: FC<IButton> = ({
   children,
@@ -11,9 +16,15 @@ const Btn: FC<IButton> = ({
   isActive,
   testid,
 }) => {
+  const typedObj: LooseObject = btn;
+
   return (
     <button
-      className={isActive ? `${styleBtn} active` : styleBtn}
+      css={
+        isActive
+          ? [typedObj[`${styleBtn}`], btn.active]
+          : typedObj[`${styleBtn}`]
+      }
       data-testid={testid}
       type={type || 'button'}
       name={name}

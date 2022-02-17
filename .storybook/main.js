@@ -1,15 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
 const fs = require('fs');
-const custom = require('../webpack.dev');
+const custom = require('../config/webpack.dev');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function getPackageDir(filepath) {
   let currDir = path.dirname(require.resolve(filepath));
+
   while (true) {
     if (fs.existsSync(path.join(currDir, 'package.json'))) {
       return currDir;
     }
+
     const { dir, root } = path.parse(currDir);
     if (dir === root) {
       throw new Error(
@@ -24,7 +26,10 @@ module.exports = {
   core: {
     builder: 'webpack5',
   },
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: [
+    '../client/src/**/*.stories.mdx',
+    '../client/src/**/*.stories.@(js|jsx|ts|tsx)',
+  ],
   addons: [
     {
       name: '@storybook/addon-docs',

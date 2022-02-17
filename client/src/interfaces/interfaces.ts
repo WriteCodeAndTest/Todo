@@ -54,4 +54,7 @@ export interface ITodoItem {
   status: boolean;
   mark: boolean;
   count: number;
+  handleClickDel: () => void;
+  handleClickMark: () => void;
+  handleClickStatus: (e: MouseEvent<HTMLDivElement>) => void;
 }

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEvent } from 'react';
 import { TodoStore } from '@src/store';
 import { observer } from 'mobx-react';
 import { Loader } from '@components/Loader';
@@ -8,7 +8,8 @@ import { TodoItem } from '@components/TodoItem';
 import { todoListWrap } from './TodoListStyle';
 
 const TodoList: FC = observer(() => {
-  const { renderTodos } = TodoStore;
+  const { renderTodos, query, deleteTodo, markTodo, setStatus, todoFilter } =
+    TodoStore;
 
   return (
     <>
@@ -19,8 +20,33 @@ const TodoList: FC = observer(() => {
               .map(({ id, title, mark, status }, ind, arr) => {
                 const count = arr.length - ind;
 
+                const handleClickDel = () => {
+                  deleteTodo(id);
+                };
+
+                const handleClickMark = () => {
+                  markTodo(id);
+                };
+
+                const handleClickStatus = (e: MouseEvent<HTMLDivElement>) => {
+                  const target = e.target as typeof e.target & {
+                    getAttribute: (a: string) => string;
+                  };
+
+                  if (
+                    target.getAttribute &&
+                    target.getAttribute('class') !== 'mark'
+                  ) {
+                    setStatus(id);
+                    todoFilter(query);
+                  }
+                };
+
                 return (
                   <TodoItem
+                    handleClickDel={handleClickDel}
+                    handleClickMark={handleClickMark}
+                    handleClickStatus={handleClickStatus}
                     key={id}
                     id={id}
                     title={title}

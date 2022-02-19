@@ -77,7 +77,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-var-requires': 0,
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.ts'] }],
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.ts', '.js'] }],
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 0,
     'react-hooks/rules-of-hooks': 'error',

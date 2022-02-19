@@ -1,10 +1,7 @@
 import React, { FC, MouseEvent } from 'react';
 import { TodoStore } from '@src/store';
 import { observer } from 'mobx-react';
-import { Loader } from '@components/Loader';
-import { Message } from '@components/Message';
 import { TodoItem } from '@components/TodoItem';
-
 import { todoListWrap } from './TodoListStyle';
 
 const TodoList: FC = observer(() => {
@@ -58,8 +55,6 @@ const TodoList: FC = observer(() => {
               })
           : null}
       </div>
-      <Message>Add todo</Message>
-      <Loader />
     </>
   );
 });

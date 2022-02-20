@@ -1,3 +1,9 @@
-const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+const delay = (ms: number, callback: any) =>
+  new Promise<void>((res) =>
+    setTimeout(() => {
+      res();
+      if (typeof callback === 'function') callback();
+    }, ms),
+  );
 
 export { delay };

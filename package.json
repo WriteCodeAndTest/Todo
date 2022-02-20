@@ -11,7 +11,7 @@
     "clean": "rm -rf dist",
     "loki:approve": "npx loki approve",
     "test": "jest --forceExit",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --forceExit --coverage",
     "loki:update": "npm run build-storybook && npx loki update --requireReference --reactUri file:./storybook-static",
     "test:loki": "npm run build-storybook && npx loki --requireReference --reactUri file:./storybook-static",
     "check": "npm run lint && npm test && npm run test:loki",

@@ -36,6 +36,7 @@ const TodoItem: FC<ITodoItem> = observer(
         key={id}
         css={colorStatus}
         onClick={(e) => handleClickStatus(e)}
+        data-testid="todoItem"
       >
         <div>
           <p css={countStyle}>{count}</p>
@@ -46,7 +47,7 @@ const TodoItem: FC<ITodoItem> = observer(
             handleClick={() => handleClickDel()}
             styleBtn="deleteBtn"
             name="delete"
-            data-testid="deleteBtn"
+            testid="deleteBtn"
           >
             Delete
           </Btn>
@@ -54,7 +55,7 @@ const TodoItem: FC<ITodoItem> = observer(
             handleClick={() => handleClickMark()}
             styleBtn="markBtn"
             name="mark"
-            data-testid="markBtn"
+            testid="markBtn"
           >
             {mark ? 'UnMark' : 'Mark'}
           </Btn>

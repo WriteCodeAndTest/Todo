@@ -5,6 +5,8 @@ import { TodoList } from '@components/TodoList';
 import { GitLink } from '@components/GitLink';
 import { TodoStore } from '@src/store';
 import { observer } from 'mobx-react';
+import { Loader } from '@components/Loader';
+import { Message } from '@components/Message';
 import { app, title, todosCount } from './AppStyle';
 
 const App: FC<React.ReactNode> = observer(() => {
@@ -26,6 +28,8 @@ const App: FC<React.ReactNode> = observer(() => {
       <TodoAdd />
       <Search />
       <TodoList />
+      <Message>Add todo</Message>
+      <Loader />
     </div>
   );
 });

@@ -114,6 +114,11 @@ class Store {
     }
   };
 
+  setTodosTest = async (value: ITodos) => {
+    this.todos.push(value);
+    this.renderTodos = this.todos;
+  };
+
   getTodos = async () => {
     try {
       this.isLoading = true;

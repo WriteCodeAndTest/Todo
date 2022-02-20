@@ -18,10 +18,16 @@ const TodoAdd: FC = observer(() => {
 
   const handleClick = () => {
     setTodos(initialState);
+    setTitle('');
   };
 
-  const handleKey = (e: KeyboardEvent<HTMLInputElement>) =>
-    e.key === 'Enter' ? setTodos(initialState) : undefined;
+  const handleKey = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      setTitle('');
+      return setTodos(initialState);
+    }
+    return undefined;
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     setTitle(e.target.value);
@@ -39,7 +45,7 @@ const TodoAdd: FC = observer(() => {
           testid="todoAddField"
         />
         <Btn
-          type="submit"
+          type="button"
           styleBtn="manageBtn"
           isDisabled={!title}
           handleClick={handleClick}

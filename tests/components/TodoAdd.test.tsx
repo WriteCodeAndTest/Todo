@@ -20,11 +20,23 @@ describe('TodoApp', () => {
     const todoAddField = getByTestId('todoAddField');
     const todoAddBtn = getByTestId('todoAddBtn');
 
-    userEvent.type(todoAddField, 'Todo this');
-    expect(todoAddField).toHaveValue('Todo this');
+    expect(todoAddBtn).toBeDisabled();
+
+    userEvent.type(todoAddField, 'Press Enter');
+    expect(todoAddField).toHaveValue('Press Enter');
+
+    expect(todoAddBtn).not.toBeDisabled();
+
+    userEvent.type(todoAddField, '{enter}');
+    expect(todoAddField).not.toHaveValue('Press Enter');
+
+    userEvent.type(todoAddField, 'Click on button');
+    expect(todoAddField).toHaveValue('Click on button');
+
+    expect(todoAddBtn).not.toBeDisabled();
 
     userEvent.click(todoAddBtn);
-    expect(todoAddField).toHaveValue();
+    expect(todoAddField).not.toHaveValue('Click on button');
 
     expect(todoAdd).toBeInTheDocument();
     expect(todoAddField).toBeInTheDocument();

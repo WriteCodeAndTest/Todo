@@ -7,7 +7,7 @@
     "build:client": "webpack --config config/webpack.prod.js",
     "start:client": "webpack serve --config config/webpack.dev.js",
     "lint": "eslint ./client/src ./server --cache",
-    "lint:fix": "eslint ./client/src ./server --fix",
+    "lint:fix": "eslint ./client/src ./server ./cypress --fix",
     "clean": "rm -rf dist",
     "loki:approve": "npx loki approve",
     "test": "jest --forceExit",

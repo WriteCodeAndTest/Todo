@@ -29,10 +29,9 @@ const TodoList: FC = observer(() => {
                   const target = e.target as typeof e.target & {
                     getAttribute: (a: string) => string;
                   };
-
                   if (
                     target.getAttribute &&
-                    target.getAttribute('class') !== 'mark'
+                    target.getAttribute('name') !== 'mark'
                   ) {
                     setStatus(id);
                     todoFilter(query);

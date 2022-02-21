@@ -2,7 +2,7 @@ module.exports = {
   clearMocks: true,
   coverageDirectory: 'coverage',
   testEnvironment: 'jsdom',
-  testPathIgnorePatterns: ['<rootDir>/dist/'],
+  testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/cypress/'],
   moduleFileExtensions: ['ts', 'js', 'tsx', 'jsx', 'json', 'node'],
   collectCoverageFrom: [
     'client/src/**/*.tsx',

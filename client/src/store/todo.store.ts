@@ -49,8 +49,8 @@ class Store {
         return todo;
       });
 
-      await updateTodo({ _id: id, mark: currentMark });
       this.renderTodos = this.todos;
+      await updateTodo({ _id: id, mark: currentMark });
       this.todoFilter(this.query);
     } catch (e: any) {
       this.requestError = e;
@@ -68,9 +68,9 @@ class Store {
         return todo;
       });
 
-      await updateTodo({ _id: id, status: currentStatus });
       this.renderTodos = this.todos;
       this.todoFilter(this.query);
+      await updateTodo({ _id: id, status: currentStatus });
     } catch (e: any) {
       this.requestError = e;
     }

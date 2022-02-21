@@ -37,10 +37,14 @@ const TodoItem: FC<ITodoItem> = observer(
         css={colorStatus}
         onClick={(e) => handleClickStatus(e)}
         data-testid="todoItem"
+        data-status={status}
+        data-mark={mark}
       >
         <div>
           <p css={countStyle}>{count}</p>
-          <div css={status ? titleDoneStyle : ''}>{title}</div>
+          <div css={status ? titleDoneStyle : ''} data-testid="todoItemTitle">
+            {title}
+          </div>
         </div>
         <div css={controlBar}>
           <Btn

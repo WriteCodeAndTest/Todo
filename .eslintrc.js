@@ -5,6 +5,7 @@ module.exports = {
     es2021: true,
     jest: true,
     node: true,
+    'cypress/globals': true,
   },
   extends: [
     'eslint:recommended',
@@ -19,6 +20,7 @@ module.exports = {
     'prettier',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:cypress/recommended',
   ],
 
   parserOptions: {
@@ -30,6 +32,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'import', 'jest'],
   rules: {
+    'cypress/no-unnecessary-waiting': 'off',
     'class-methods-use-this': 'off',
     'consistent-return': 'off',
     'react/button-has-type': 'off',
@@ -138,6 +141,12 @@ module.exports = {
       files: ['*.stories.tsx'],
       rules: {
         'no-restricted-syntax': ['off'],
+      },
+    },
+    {
+      files: ['*.spec.js'],
+      rules: {
+        'jest/expect-expect': 0,
       },
     },
   ],

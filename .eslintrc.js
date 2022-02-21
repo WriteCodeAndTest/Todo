@@ -147,6 +147,9 @@ module.exports = {
       files: ['*.spec.js'],
       rules: {
         'jest/expect-expect': 0,
+        'jest/valid-expect-in-promise': 0,
+        'jest/valid-expect': 0,
+        'no-unused-expressions': 0,
       },
     },
   ],

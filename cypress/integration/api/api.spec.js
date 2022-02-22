@@ -1,6 +1,6 @@
 let id;
 describe('API test', () => {
-  it('GET method test | Emptu todos', () => {
+  it('GET method test | Empty todos', () => {
     cy.request('GET', 'https://cryptic-ravine-29648.herokuapp.com/todos').then(
       (res) => {
         expect(res).to.have.property('status', 200);

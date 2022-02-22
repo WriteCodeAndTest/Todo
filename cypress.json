@@ -3,5 +3,6 @@
   "screenshotOnRunFailure": false,
   "baseUrl": "https://ligalaiz-todo.netlify.app/",
   "viewportWidth": 1920,
-  "viewportHeight": 1080
+  "viewportHeight": 1080,
+  "projectId": "n5h34e"
 }

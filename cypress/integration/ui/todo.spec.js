@@ -1,6 +1,6 @@
 import { TodoMethods } from './TodoMethods';
 
-const delay = 500;
+const delay = 1500;
 
 describe('to-do app', () => {
   const {

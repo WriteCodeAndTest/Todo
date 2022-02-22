@@ -7,7 +7,7 @@ import { Btn } from '../../client/src/components/Btn';
 const handleClick = jest.fn();
 
 describe('Btn', () => {
-  it('component render check', () => {
+  it('component render check #smoke', () => {
     const { getByTestId } = render(
       <Btn
         type="submit"

@@ -1,6 +1,15 @@
-import React, { FC } from 'react';
-import { IButton } from '@src/interfaces';
+import React, { FC, MouseEvent } from 'react';
 import * as btn from './BtnStyle';
+
+interface IButton {
+  styleBtn: string;
+  type?: 'button' | 'submit' | 'reset' | undefined;
+  isDisabled?: boolean;
+  name?: string;
+  handleClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+  isActive?: boolean;
+  testid?: string;
+}
 
 interface LooseObject {
   [key: string]: any;
@@ -8,7 +17,7 @@ interface LooseObject {
 
 const Btn: FC<IButton> = ({
   children,
-  type,
+  type = 'button',
   styleBtn,
   name,
   handleClick,

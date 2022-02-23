@@ -1,5 +1,13 @@
 import { axiosInstance } from './axiosInstance';
-import { ITodosRequest } from '@src/interfaces';
+
+interface ITodosRequest {
+  title?: string;
+  data?: string;
+  status?: boolean;
+  mark?: boolean;
+  _id?: string;
+  id?: string;
+}
 
 const createTodo = async (todo: ITodosRequest) => {
   try {

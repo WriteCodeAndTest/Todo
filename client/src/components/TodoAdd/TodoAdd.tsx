@@ -1,10 +1,18 @@
 import React, { FC, KeyboardEvent, ChangeEvent } from 'react';
 import { TodoStore } from '@src/store';
-import { IState } from '@src/interfaces';
 import { observer } from 'mobx-react';
 import { todoAdd } from './TodoAddStyle';
 import { Btn } from '../Btn';
 import { Input } from '../Input';
+
+export interface IState {
+  title: string;
+  data: string;
+  status: boolean;
+  mark: boolean;
+  _id?: string;
+  id?: string;
+}
 
 const TodoAdd: FC = observer(() => {
   const { title, setTodos, setTitle } = TodoStore;

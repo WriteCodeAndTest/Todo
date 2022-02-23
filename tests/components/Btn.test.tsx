@@ -6,47 +6,48 @@ import { Btn } from '../../client/src/components/Btn';
 
 const handleClick = jest.fn();
 
-describe('Btn', () => {
-  it('component render check #smoke', () => {
-    const { getByTestId } = render(
-      <Btn
-        type="submit"
-        styleBtn="manageBtn"
-        handleClick={handleClick}
-        testid="todoAddBtn"
-      />,
-    );
-    const btn = getByTestId('todoAddBtn');
+const renderComponent = () =>
+  render(
+    <Btn
+      type="button"
+      styleBtn="manageBtn"
+      handleClick={handleClick}
+      testid="todoAddBtn"
+    />,
+  );
 
-    expect(btn).toBeInTheDocument();
+describe('Btn component', () => {
+  describe('Component exist', () => {
+    it('todoAddBtn check that the component has been rendered #smoke', () => {
+      const { getByTestId } = renderComponent();
+      const btn = getByTestId('todoAddBtn');
+
+      expect(btn).toBeInTheDocument();
+    });
   });
 
-  it('check Btn operation', () => {
-    const { getByTestId } = render(
-      <Btn
-        type="button"
-        styleBtn="manageBtn"
-        handleClick={handleClick}
-        testid="todoAddBtn"
-      />,
-    );
-    const btn = getByTestId('todoAddBtn');
+  describe('Сomponent works', () => {
+    it('todoAddBtn check click handler was called after click', () => {
+      const { getByTestId } = renderComponent();
+      const btn = getByTestId('todoAddBtn');
 
-    userEvent.click(btn);
-    expect(handleClick).toHaveBeenCalled();
-  });
+      userEvent.click(btn);
+      expect(handleClick).toHaveBeenCalled();
+    });
 
-  it('check disabled Btn', () => {
-    const { getByTestId } = render(
-      <Btn
-        type="button"
-        styleBtn="manageBtn"
-        handleClick={handleClick}
-        isDisabled
-        testid="todoAddBtn"
-      />,
-    );
-    const btn = getByTestId('todoAddBtn');
-    expect(btn).toBeDisabled();
+    it('todoAddBtn check button state is disabled when textbox is empty', () => {
+      const { getByTestId } = render(
+        <Btn
+          type="button"
+          styleBtn="manageBtn"
+          handleClick={handleClick}
+          testid="todoAddBtn"
+          isDisabled
+        />,
+      );
+      const btn = getByTestId('todoAddBtn');
+
+      expect(btn).toBeDisabled();
+    });
   });
 });

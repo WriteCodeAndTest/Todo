@@ -4,42 +4,59 @@ import userEvent from '@testing-library/user-event';
 import { render } from '@testing-library/react';
 import { App } from '../../client/src/components/App';
 
-describe('TodoApp', () => {
-  it('component render check', () => {
-    const { getByTestId } = render(<App />);
+describe('TodoApp component', () => {
+  describe('Component exist', () => {
+    it('TodoApp check that the component has been rendered #smoke', () => {
+      const { getByTestId } = render(<App />);
 
-    expect(getByTestId('todoAdd')).toBeInTheDocument();
-    expect(getByTestId('todoAddField')).toBeInTheDocument();
-    expect(getByTestId('todoAddBtn')).toBeInTheDocument();
+      expect(getByTestId('todoAdd')).toBeInTheDocument();
+      expect(getByTestId('todoAddField')).toBeInTheDocument();
+      expect(getByTestId('todoAddBtn')).toBeInTheDocument();
+    });
   });
 
-  it('check component operation', () => {
-    const { getByTestId } = render(<App />);
+  describe('Сomponent works', () => {
+    it('todoAddField check change handler was called after type', () => {
+      const { getByTestId } = render(<App />);
+      const todoAddField = getByTestId('todoAddField');
 
-    const todoAdd = getByTestId('todoAdd');
-    const todoAddField = getByTestId('todoAddField');
-    const todoAddBtn = getByTestId('todoAddBtn');
+      userEvent.type(todoAddField, 'Press Enter');
+      expect(todoAddField).toHaveValue('Press Enter');
 
-    expect(todoAddBtn).toBeDisabled();
+      userEvent.type(todoAddField, '{enter}');
+      expect(todoAddField).not.toHaveValue('Press Enter');
+    });
 
-    userEvent.type(todoAddField, 'Press Enter');
-    expect(todoAddField).toHaveValue('Press Enter');
+    it('todoAddBtn check button state is not disabled when textbox is not empty', () => {
+      const { getByTestId } = render(<App />);
+      const todoAddField = getByTestId('todoAddField');
+      const todoAddBtn = getByTestId('todoAddBtn');
 
-    expect(todoAddBtn).not.toBeDisabled();
+      userEvent.type(todoAddField, 'Click on button');
 
-    userEvent.type(todoAddField, '{enter}');
-    expect(todoAddField).not.toHaveValue('Press Enter');
+      expect(todoAddBtn).not.toBeDisabled();
+    });
 
-    userEvent.type(todoAddField, 'Click on button');
-    expect(todoAddField).toHaveValue('Click on button');
+    it('todoAddBtn check click handler was called after click', () => {
+      const { getByTestId } = render(<App />);
+      const todoAddField = getByTestId('todoAddField');
+      const todoAddBtn = getByTestId('todoAddBtn');
 
-    expect(todoAddBtn).not.toBeDisabled();
+      userEvent.type(todoAddField, 'Click on button');
+      userEvent.click(todoAddBtn);
 
-    userEvent.click(todoAddBtn);
-    expect(todoAddField).not.toHaveValue('Click on button');
+      expect(todoAddField).not.toHaveValue('Click on button');
+    });
 
-    expect(todoAdd).toBeInTheDocument();
-    expect(todoAddField).toBeInTheDocument();
-    expect(todoAddBtn).toBeInTheDocument();
+    it('todoAddBtn check button state is disabled when textbox is empty', () => {
+      const { getByTestId } = render(<App />);
+      const todoAddField = getByTestId('todoAddField');
+      const todoAddBtn = getByTestId('todoAddBtn');
+
+      userEvent.type(todoAddField, 'Click on button');
+      userEvent.click(todoAddBtn);
+
+      expect(todoAddBtn).toBeDisabled();
+    });
   });
 });

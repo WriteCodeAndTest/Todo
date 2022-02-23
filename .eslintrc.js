@@ -32,6 +32,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'import', 'jest'],
   rules: {
+    'no-console': 'off',
     'cypress/no-unnecessary-waiting': 'off',
     'class-methods-use-this': 'off',
     'consistent-return': 'off',
@@ -55,12 +56,6 @@ module.exports = {
       {
         selector: 'ExportDefaultDeclaration',
         message: 'Restricted default export, prefer named exports!',
-      },
-    ],
-    'no-console': [
-      'warn',
-      {
-        allow: ['warn', 'error'],
       },
     ],
     'jsx-a11y/label-has-associated-control': 0,

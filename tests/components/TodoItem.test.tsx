@@ -22,29 +22,43 @@ const renderComponent = () =>
     />,
   );
 
-describe('TodoItem', () => {
-  it('component render check', () => {
-    const { getByTestId } = renderComponent();
+describe('TodoItem component', () => {
+  describe('Component exist', () => {
+    it('todoItem check that the component has been rendered #smoke', () => {
+      const { getByTestId } = renderComponent();
 
-    expect(getByTestId('todoItem')).toBeInTheDocument();
-    expect(getByTestId('deleteBtn')).toBeInTheDocument();
-    expect(getByTestId('markBtn')).toBeInTheDocument();
+      expect(getByTestId('todoItem')).toBeInTheDocument();
+      expect(getByTestId('deleteBtn')).toBeInTheDocument();
+      expect(getByTestId('markBtn')).toBeInTheDocument();
+    });
   });
 
-  it('check component operation', () => {
-    const { getByTestId } = renderComponent();
+  describe('Сomponent works', () => {
+    it('todoItem check click handler was called after click', () => {
+      const { getByTestId } = renderComponent();
+      const todoItem = getByTestId('todoItem');
 
-    const todoItem = getByTestId('todoItem');
-    const deleteBtn = getByTestId('deleteBtn');
-    const markBtn = getByTestId('markBtn');
+      userEvent.click(todoItem);
 
-    userEvent.click(todoItem);
-    expect(handleClickStatus).toHaveBeenCalledTimes(1);
+      expect(handleClickStatus).toHaveBeenCalledTimes(1);
+    });
 
-    userEvent.click(deleteBtn);
-    expect(handleClickDel).toHaveBeenCalledTimes(1);
+    it('deleteBtn check click handler was called after click', () => {
+      const { getByTestId } = renderComponent();
+      const deleteBtn = getByTestId('deleteBtn');
 
-    userEvent.click(markBtn);
-    expect(handleClickMark).toHaveBeenCalledTimes(1);
+      userEvent.click(deleteBtn);
+
+      expect(handleClickDel).toHaveBeenCalledTimes(1);
+    });
+
+    it('markBtn check click handler was called after click', () => {
+      const { getByTestId } = renderComponent();
+      const markBtn = getByTestId('markBtn');
+
+      userEvent.click(markBtn);
+
+      expect(handleClickMark).toHaveBeenCalledTimes(1);
+    });
   });
 });

@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
+import { observer } from 'mobx-react';
 import { githubCorner } from './GitLinkStyle';
 
-const GitLink: FC = () => {
+const GitLink: FC = observer(() => {
   return (
     <a
       href="https://github.com/Ligalaiz/Todo"
@@ -29,6 +30,6 @@ const GitLink: FC = () => {
       </svg>
     </a>
   );
-};
+});
 
 export { GitLink };

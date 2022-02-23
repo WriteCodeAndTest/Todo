@@ -1,7 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEvent } from 'react';
 import { observer } from 'mobx-react';
 import { Btn } from '../Btn';
-import { ITodoItem } from '@src/interfaces';
 import {
   controlBar,
   countStyle,
@@ -10,6 +9,17 @@ import {
   todoStyle,
   todoDoneStyle,
 } from './TodoItemStyle';
+
+export interface ITodoItem {
+  id: string;
+  title: string;
+  status: boolean;
+  mark: boolean;
+  count: number;
+  handleClickDel: () => void;
+  handleClickMark: () => void;
+  handleClickStatus: (e: MouseEvent<HTMLDivElement>) => void;
+}
 
 const TodoItem: FC<ITodoItem> = observer(
   ({

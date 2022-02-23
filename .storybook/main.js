@@ -54,6 +54,7 @@ module.exports = {
       },
     },
   ],
+  
   webpackFinal: async (config) => {
     config.plugins.push(
       new webpack.HotModuleReplacementPlugin(),
@@ -65,7 +66,7 @@ module.exports = {
 
     config.resolve.modules = [
       ...(config.resolve.modules || []),
-      path.resolve(__dirname, '../src'),
+      path.resolve(__dirname, '../client/src'),
     ];
 
     config.module.rules.push({

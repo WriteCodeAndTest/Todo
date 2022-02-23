@@ -1,4 +1,8 @@
 import { axiosInstance } from './axiosInstance';
+import {
+  getErrorMessageUtils,
+  reportErrorUtils,
+} from '@utils/errorReport.utils';
 
 interface ITodosRequest {
   title?: string;
@@ -17,8 +21,8 @@ const createTodo = async (todo: ITodosRequest) => {
     });
 
     return todoResponse;
-  } catch (e: any) {
-    console.log(e.message);
+  } catch (err) {
+    reportErrorUtils({ message: getErrorMessageUtils(err) });
   }
 };
 
@@ -29,8 +33,8 @@ const getAllTodos = async () => {
     });
 
     return response;
-  } catch (e: any) {
-    console.log(e.message);
+  } catch (err) {
+    reportErrorUtils({ message: getErrorMessageUtils(err) });
   }
 };
 
@@ -40,8 +44,8 @@ const updateTodo = async (data: ITodosRequest) => {
       method: 'put',
       data,
     });
-  } catch (e: any) {
-    console.log(e.message);
+  } catch (err) {
+    reportErrorUtils({ message: getErrorMessageUtils(err) });
   }
 };
 
@@ -51,8 +55,8 @@ const deleteTodo = async (id: string) => {
       url: `${id}`,
       method: 'delete',
     });
-  } catch (e: any) {
-    console.log(e.message);
+  } catch (err) {
+    reportErrorUtils({ message: getErrorMessageUtils(err) });
   }
 };
 

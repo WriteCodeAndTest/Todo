@@ -1,6 +1,10 @@
 import { makeAutoObservable } from 'mobx';
 import { getAllTodos, createTodo, updateTodo, deleteTodo } from '@src/api';
 import { delay } from '@utils/delay.utils';
+import {
+  getErrorMessageUtils,
+  reportErrorUtils,
+} from '@utils/errorReport.utils';
 
 interface ITodos {
   title: string;
@@ -50,8 +54,11 @@ class Store {
       this.todos = this.todos.filter((todo) => todo.id !== id);
       this.renderTodos = this.todos;
       await deleteTodo(id);
-    } catch (e: any) {
-      this.requestError = e;
+    } catch (err) {
+      reportErrorUtils({
+        message: getErrorMessageUtils(err),
+        cb: this.requestError,
+      });
     }
   };
 
@@ -69,8 +76,11 @@ class Store {
       this.renderTodos = this.todos;
       await updateTodo({ _id: id, mark: currentMark });
       this.todoFilter(this.query);
-    } catch (e: any) {
-      this.requestError = e;
+    } catch (err) {
+      reportErrorUtils({
+        message: getErrorMessageUtils(err),
+        cb: this.requestError,
+      });
     }
   };
 
@@ -88,8 +98,11 @@ class Store {
       this.renderTodos = this.todos;
       this.todoFilter(this.query);
       await updateTodo({ _id: id, status: currentStatus });
-    } catch (e: any) {
-      this.requestError = e;
+    } catch (err) {
+      reportErrorUtils({
+        message: getErrorMessageUtils(err),
+        cb: this.requestError,
+      });
     }
   };
 
@@ -117,6 +130,7 @@ class Store {
   setTodos = async (value: IState) => {
     try {
       const result = await createTodo(value);
+      // eslint-disable-next-line no-console
       if (!result) return console.log('Server error');
 
       if (result.status === 200) {
@@ -126,8 +140,11 @@ class Store {
         this.todoFilter(this.query);
       }
       this.title = '';
-    } catch (e: any) {
-      this.requestError = e;
+    } catch (err) {
+      reportErrorUtils({
+        message: getErrorMessageUtils(err),
+        cb: this.requestError,
+      });
     }
   };
 
@@ -152,8 +169,11 @@ class Store {
         }));
         this.renderTodos = this.todos;
       }
-    } catch (e: any) {
-      this.requestError = e;
+    } catch (err) {
+      reportErrorUtils({
+        message: getErrorMessageUtils(err),
+        cb: this.requestError,
+      });
     } finally {
       this.isLoading = false;
     }

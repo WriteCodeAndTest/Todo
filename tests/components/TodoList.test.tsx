@@ -7,37 +7,51 @@ import { TodoStore } from '../../client/src/store';
 
 afterEach(cleanup);
 
-describe('TodoList', () => {
-  it('component render check', () => {
-    TodoStore.setTodosTest({
-      title: 'Test',
-      data: new Date().toLocaleDateString(),
-      status: false,
-      mark: false,
-      id: '123',
+describe('TodoList component', () => {
+  describe('Component exist', () => {
+    it('todoList check that the component has been rendered #smoke', () => {
+      TodoStore.setTodosTest({
+        title: 'Test',
+        data: new Date().toLocaleDateString(),
+        status: false,
+        mark: false,
+        id: '123',
+      });
+
+      const { getByTestId } = render(<TodoList />);
+
+      expect(getByTestId('todoList')).toBeInTheDocument();
+      expect(getByTestId('deleteBtn')).toBeInTheDocument();
+      expect(getByTestId('markBtn')).toBeInTheDocument();
     });
-
-    const { getByTestId } = render(<TodoList />);
-
-    expect(getByTestId('todoList')).toBeInTheDocument();
-    expect(getByTestId('deleteBtn')).toBeInTheDocument();
-    expect(getByTestId('markBtn')).toBeInTheDocument();
   });
 
-  it('check component operation', () => {
-    const { getByTestId } = render(<TodoList />);
+  describe('Сomponent works', () => {
+    it('todoItem check status field in store was changed after click', () => {
+      const { getByTestId } = render(<TodoList />);
+      const todoItem = getByTestId('todoItem');
 
-    const todoItem = getByTestId('todoItem');
-    const deleteBtn = getByTestId('deleteBtn');
-    const markBtn = getByTestId('markBtn');
+      userEvent.click(todoItem);
 
-    userEvent.click(todoItem);
-    expect(TodoStore.renderTodos[0].status).toBeTruthy();
+      expect(TodoStore.renderTodos[0].status).toBeTruthy();
+    });
 
-    userEvent.click(markBtn);
-    expect(TodoStore.renderTodos[0].mark).toBeTruthy();
+    it('markBtn check mark field in store was changed after click', () => {
+      const { getByTestId } = render(<TodoList />);
+      const markBtn = getByTestId('markBtn');
 
-    userEvent.click(deleteBtn);
-    expect(TodoStore.renderTodos).toHaveLength(0);
+      userEvent.click(markBtn);
+
+      expect(TodoStore.renderTodos[0].mark).toBeTruthy();
+    });
+
+    it('deleteBtn check renderTodos field in store was changed after click', () => {
+      const { getByTestId } = render(<TodoList />);
+      const deleteBtn = getByTestId('deleteBtn');
+
+      userEvent.click(deleteBtn);
+
+      expect(TodoStore.renderTodos).toHaveLength(0);
+    });
   });
 });

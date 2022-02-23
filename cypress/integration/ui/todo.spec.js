@@ -1,8 +1,8 @@
 import { TodoMethods } from './TodoMethods';
 
-const delay = 1500;
+const delay = 2000;
 
-describe('to-do app', () => {
+describe('UI tests', () => {
   const {
     getTodoAddField,
     getAddBtn,
@@ -21,16 +21,20 @@ describe('to-do app', () => {
     getDeleteBtn().first().should('be.visible').click();
   });
 
-  it('Todo add filed', () => {
+  it('todoItem check component has been created', () => {
+    cy.wait(delay);
+
     getTodoAddField().type('Todo this');
     getAddBtn().click();
+
     cy.wait(delay);
+
     cy.get('div[data-testid="todoItemTitle"]')
       .first()
       .should('have.text', 'Todo this');
   });
 
-  it('Search field', () => {
+  it('searchField check todoList was filtered', () => {
     getSearchField().type('Todo this').should('have.value', 'Todo this');
 
     cy.wait(delay);
@@ -41,7 +45,7 @@ describe('to-do app', () => {
     getTitle().last().should('have.text', 'Todo this');
   });
 
-  it('Active button filter', () => {
+  it('activeBtn check todoList was filtered by status active', () => {
     getActiveBtn().should('be.visible');
 
     cy.wait(delay);
@@ -52,7 +56,7 @@ describe('to-do app', () => {
     getTodoItem().last().should('have.attr', 'data-status', 'false');
   });
 
-  it('Test TodoItem change status', () => {
+  it('todoItem check change todo status on done', () => {
     getTodoAddField().type('Todo status').should('be.value', 'Todo status');
     getAddBtn().click();
 
@@ -62,7 +66,7 @@ describe('to-do app', () => {
     getTodoItem().should('have.attr', 'data-status', 'true');
   });
 
-  it('Done button filter', () => {
+  it('doneBtn check todoList was filtered by status done', () => {
     cy.get('button[data-testid="doneBtn"]').should('be.visible');
 
     cy.wait(delay);
@@ -74,7 +78,7 @@ describe('to-do app', () => {
     cy.get('button[data-testid="doneBtn"]').click();
   });
 
-  it('Test TodoItem change mark', () => {
+  it('todoItem check change todo mark on marked', () => {
     cy.wait(delay);
 
     getTodoItem().first().should('have.attr', 'data-mark', 'false');
@@ -86,7 +90,7 @@ describe('to-do app', () => {
     cy.get('button[data-testid="markBtn"]').first().click();
   });
 
-  it('Test TodoItem delete button', () => {
+  it('deleteBtn check todoItem was deleted', () => {
     cy.wait(delay);
 
     getDeleteBtn().first().should('be.visible').click();

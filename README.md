@@ -6,4 +6,4 @@
 
 ## UI Design: **[stories](https://todo-ui-netlify.netlify.app/)**
 
-## Test coverage: **[unit](https://htmlpreview.github.io/?https://github.com/Ligalaiz/Todo/blob/master/coverage/lcov-report/index.html)**, **[mutation](https://htmlpreview.github.io/?https://github.com/Ligalaiz/Todo/blob/master/reports/mutation/html/index.html)**, [E2E ![Todo](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/n5h34e&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/n5h34e/runs)
+## Test coverage: **[unit & Integration](https://htmlpreview.github.io/?https://github.com/Ligalaiz/Todo/blob/master/coverage/lcov-report/index.html)**, **[mutation](https://htmlpreview.github.io/?https://github.com/Ligalaiz/Todo/blob/master/reports/mutation/html/index.html)**, [E2E ![Todo](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/n5h34e&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/n5h34e/runs)

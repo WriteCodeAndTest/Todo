@@ -2,8 +2,8 @@ import React, { FC, KeyboardEvent, ChangeEvent } from 'react';
 import { TodoStore } from '@src/store';
 import { observer } from 'mobx-react';
 import { todoAdd } from './TodoAddStyle';
-import { Btn } from '../Btn';
-import { Input } from '../Input';
+import { Btn } from '@components/Btn';
+import { Input } from '@components/Input';
 
 export interface IState {
   title: string;

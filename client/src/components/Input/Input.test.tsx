@@ -2,7 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { render } from '@testing-library/react';
-import { Input } from '../../client/src/components/Input';
+import { Input } from '@components/Input';
 
 const handleKey = jest.fn();
 const handleChange = jest.fn();

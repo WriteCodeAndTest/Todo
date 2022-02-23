@@ -1,7 +1,7 @@
 import React, { FC, MouseEvent } from 'react';
 import { TodoStore } from '@src/store';
 import { observer } from 'mobx-react';
-import { TodoItem } from '@components/TodoItem';
+import { TodoItem } from '@modules/TodoItem';
 import { todoListWrap } from './TodoListStyle';
 
 const TodoList: FC = observer(() => {

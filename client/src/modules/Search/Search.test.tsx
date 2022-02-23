@@ -3,8 +3,8 @@ import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render } from '@testing-library/react';
-import { App } from '../../client/src/components/App';
-import { TodoStore } from '../../client/src/store';
+import { App } from '@src/App';
+import { TodoStore } from '@src/store';
 
 describe('Search component', () => {
   describe('Component exist', () => {

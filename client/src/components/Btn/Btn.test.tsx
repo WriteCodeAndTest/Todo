@@ -2,7 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { render } from '@testing-library/react';
-import { Btn } from '../../client/src/components/Btn';
+import { Btn } from '@components/Btn';
 
 const handleClick = jest.fn();
 

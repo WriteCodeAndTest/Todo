@@ -1,6 +1,6 @@
 import React, { FC, MouseEvent } from 'react';
 import { observer } from 'mobx-react';
-import { Btn } from '../Btn';
+import { Btn } from '@components/Btn';
 import {
   controlBar,
   countStyle,

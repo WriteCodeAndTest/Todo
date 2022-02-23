@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { configure } from 'mobx';
 import { Global } from '@emotion/react';
-import { App } from '@components/App';
+import { App } from '@src/App';
 import { globalStyle } from '@src/styles';
 
 setTimeout(() =>

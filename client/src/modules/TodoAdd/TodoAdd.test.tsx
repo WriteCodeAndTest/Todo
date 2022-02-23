@@ -2,7 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { render } from '@testing-library/react';
-import { App } from '../../client/src/components/App';
+import { App } from '@src/App';
 
 describe('TodoApp component', () => {
   describe('Component exist', () => {

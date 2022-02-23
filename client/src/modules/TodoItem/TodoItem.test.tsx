@@ -2,7 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { render } from '@testing-library/react';
-import { TodoItem } from '../../client/src/components/TodoItem';
+import { TodoItem } from '@modules/TodoItem';
 
 const handleClickDel = jest.fn();
 const handleClickMark = jest.fn();
@@ -15,7 +15,7 @@ const renderComponent = () =>
       title="To do this"
       status={false}
       mark={false}
-      count="1"
+      count={1}
       handleClickDel={handleClickDel}
       handleClickMark={handleClickMark}
       handleClickStatus={handleClickStatus}

@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { getAllTodos, createTodo, updateTodo, deleteTodo } from '@src/module';
+import { getAllTodos, createTodo, updateTodo, deleteTodo } from '@src/api';
 import { delay } from '@utils/delay.utils';
 
 interface ITodos {

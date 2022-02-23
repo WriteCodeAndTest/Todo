@@ -1,8 +1,8 @@
 import React, { FC, KeyboardEvent, ChangeEvent, MouseEvent } from 'react';
 import { TodoStore } from '@src/store';
 import { observer } from 'mobx-react';
-import { Input } from '../Input';
-import { Btn } from '../Btn';
+import { Input } from '@components/Input';
+import { Btn } from '@components/Btn';
 import { search, searchField, searchFilter } from './SearchStyle';
 
 const Search: FC = observer(() => {

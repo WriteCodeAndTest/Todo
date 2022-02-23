@@ -1,4 +1,4 @@
-import { delay } from '../../client/src/utils';
+import { delay } from '.';
 
 jest.useFakeTimers();
 

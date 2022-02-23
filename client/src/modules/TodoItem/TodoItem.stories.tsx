@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { TodoItem } from '../../../components/TodoItem';
+import { TodoItem } from '@modules/TodoItem';
 
 const meta: Meta = {
   title: 'Components | TodoItem',

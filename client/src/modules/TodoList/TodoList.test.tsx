@@ -2,8 +2,8 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { render, cleanup } from '@testing-library/react';
-import { TodoList } from '../../client/src/components/TodoList';
-import { TodoStore } from '../../client/src/store';
+import { TodoList } from '@modules/TodoList';
+import { TodoStore } from '@src/store';
 
 afterEach(cleanup);
 

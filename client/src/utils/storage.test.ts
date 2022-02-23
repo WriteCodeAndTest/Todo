@@ -1,4 +1,4 @@
-import { get, set, del } from '../../client/src/utils/storage.utils';
+import { get, set, del } from './storage.utils';
 
 const KEY = 'foo';
 const VALUE = 'bar';

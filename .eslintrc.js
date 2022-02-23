@@ -83,6 +83,7 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.ts', '.js'] }],
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 0,
+    'react/require-default-props': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/display-name': 0,

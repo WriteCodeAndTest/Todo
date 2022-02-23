@@ -1,4 +1,4 @@
-import { axiosInstance } from '@src/utils';
+import { axiosInstance } from './axiosInstance';
 import { ITodosRequest } from '@src/interfaces';
 
 const createTodo = async (todo: ITodosRequest) => {

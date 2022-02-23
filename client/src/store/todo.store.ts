@@ -1,7 +1,24 @@
 import { makeAutoObservable } from 'mobx';
-import { ITodos, IState } from '@src/interfaces';
 import { getAllTodos, createTodo, updateTodo, deleteTodo } from '@src/module';
 import { delay } from '@utils/delay.utils';
+
+interface ITodos {
+  title: string;
+  data: string;
+  status: boolean;
+  mark: boolean;
+  _id?: string;
+  id: string;
+}
+
+interface IState {
+  title: string;
+  data: string;
+  status: boolean;
+  mark: boolean;
+  _id?: string;
+  id?: string;
+}
 
 class Store {
   constructor() {

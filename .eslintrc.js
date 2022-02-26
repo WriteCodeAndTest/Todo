@@ -32,6 +32,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'import', 'jest'],
   rules: {
+    'no-console': 'off',
     'cypress/no-unnecessary-waiting': 'off',
     'class-methods-use-this': 'off',
     'consistent-return': 'off',
@@ -57,12 +58,6 @@ module.exports = {
         message: 'Restricted default export, prefer named exports!',
       },
     ],
-    'no-console': [
-      'warn',
-      {
-        allow: ['warn', 'error'],
-      },
-    ],
     'jsx-a11y/label-has-associated-control': 0,
     'jsx-a11y/control-has-associated-label': 0,
     'jsx-a11y/label-has-for': 0,
@@ -83,6 +78,7 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.ts', '.js'] }],
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 0,
+    'react/require-default-props': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/display-name': 0,

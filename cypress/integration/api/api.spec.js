@@ -1,6 +1,6 @@
 let id;
-describe('API test', () => {
-  it('GET method test | Empty todos', () => {
+describe('API tests', () => {
+  it('GET check get all todos from db | empty array', () => {
     cy.request('GET', 'https://cryptic-ravine-29648.herokuapp.com/todos').then(
       (res) => {
         expect(res).to.have.property('status', 200);
@@ -10,7 +10,7 @@ describe('API test', () => {
     );
   });
 
-  it('POST method test', () => {
+  it('POST check add new todos to bd', () => {
     cy.request('POST', 'https://cryptic-ravine-29648.herokuapp.com/todos', {
       title: 'Todo this',
       data: '20.20.2020',
@@ -22,7 +22,7 @@ describe('API test', () => {
     });
   });
 
-  it('GET method test | All todos', () => {
+  it('GET check get all todos from db | exist 1 todo', () => {
     cy.request('GET', 'https://cryptic-ravine-29648.herokuapp.com/todos').then(
       (res) => {
         id = res.body[0]._id;
@@ -34,7 +34,7 @@ describe('API test', () => {
     );
   });
 
-  it('Put method test', () => {
+  it('PUT check', () => {
     cy.request('PUT', 'https://cryptic-ravine-29648.herokuapp.com/todos', {
       title: 'Title was changed',
       data: '21.21.2121',
@@ -47,7 +47,7 @@ describe('API test', () => {
     });
   });
 
-  it('GET method test | By id', () => {
+  it('GET check get todo by id', () => {
     cy.request(
       'GET',
       `https://cryptic-ravine-29648.herokuapp.com/todos/${id}`,
@@ -58,9 +58,9 @@ describe('API test', () => {
     });
   });
 
-  it('Delete method test | By id', () => {
+  it('DELETE check delete todo by id', () => {
     cy.request(
-      'Delete',
+      'DELETE',
       `https://cryptic-ravine-29648.herokuapp.com/todos/${id}`,
     ).then((res) => {
       expect(res).to.have.property('status', 200);

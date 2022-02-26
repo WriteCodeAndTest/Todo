@@ -1,7 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, KeyboardEvent, ChangeEvent } from 'react';
 import { observer } from 'mobx-react';
 import { input } from './InputStyle';
-import { IInput } from '@src/interfaces';
+
+interface IInput {
+  placeholder: string;
+  handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleKey?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  name: string;
+  type: string;
+  value: string;
+  className?: string;
+  testid?: string;
+}
 
 const Input: FC<IInput> = observer(
   ({

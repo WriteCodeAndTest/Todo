@@ -61,8 +61,7 @@ module.exports = {
     alias: {
       '@src': src,
       '@components': join(src, 'components'),
-      '@shared': join(src, 'components/shared'),
-      '@search': join(src, 'components/search/components'),
+      '@modules': join(src, 'modules'),
       '@utils': join(src, 'utils'),
       '@assets': join(src, 'assets'),
     },

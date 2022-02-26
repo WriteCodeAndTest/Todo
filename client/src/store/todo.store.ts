@@ -53,6 +53,7 @@ class Store {
     try {
       this.todos = this.todos.filter((todo) => todo.id !== id);
       this.renderTodos = this.todos;
+
       await deleteTodo(id);
     } catch (err) {
       reportErrorUtils({
@@ -74,8 +75,9 @@ class Store {
       });
 
       this.renderTodos = this.todos;
-      await updateTodo({ _id: id, mark: currentMark });
       this.todoFilter(this.query);
+
+      await updateTodo({ _id: id, mark: currentMark });
     } catch (err) {
       reportErrorUtils({
         message: getErrorMessageUtils(err),
@@ -92,11 +94,13 @@ class Store {
           currentStatus = !todo.status;
           return { ...todo, status: currentStatus };
         }
+
         return todo;
       });
 
       this.renderTodos = this.todos;
       this.todoFilter(this.query);
+
       await updateTodo({ _id: id, status: currentStatus });
     } catch (err) {
       reportErrorUtils({
@@ -130,15 +134,17 @@ class Store {
   setTodos = async (value: IState) => {
     try {
       const result = await createTodo(value);
-      // eslint-disable-next-line no-console
+
       if (!result) return console.log('Server error');
 
       if (result.status === 200) {
         const { data } = result;
+
         this.todos.push({ ...data, id: data._id });
         this.renderTodos = this.todos;
         this.todoFilter(this.query);
       }
+
       this.title = '';
     } catch (err) {
       reportErrorUtils({

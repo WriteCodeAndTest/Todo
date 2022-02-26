@@ -58,7 +58,7 @@ const TodoItem: FC<ITodoItem> = observer(
         </div>
         <div css={controlBar}>
           <Btn
-            handleClick={() => handleClickDel()}
+            handleClick={handleClickDel}
             styleBtn="deleteBtn"
             name="delete"
             testid="deleteBtn"
@@ -66,7 +66,7 @@ const TodoItem: FC<ITodoItem> = observer(
             Delete
           </Btn>
           <Btn
-            handleClick={() => handleClickMark()}
+            handleClick={handleClickMark}
             styleBtn="markBtn"
             name="mark"
             testid="markBtn"

@@ -9,52 +9,50 @@ const TodoList: FC = observer(() => {
     TodoStore;
 
   return (
-    <>
-      <div css={todoListWrap} data-testid="todoList">
-        {renderTodos.length
-          ? [...renderTodos]
-              .reverse()
-              .map(({ id, title, mark, status }, ind, arr) => {
-                const count = arr.length - ind;
+    <div css={todoListWrap} data-testid="todoList">
+      {renderTodos.length
+        ? [...renderTodos]
+            .reverse()
+            .map(({ id, title, mark, status }, ind, arr) => {
+              const count = arr.length - ind;
 
-                const handleClickDel = () => {
-                  deleteTodo(id);
+              const handleClickDel = () => {
+                deleteTodo(id);
+              };
+
+              const handleClickMark = () => {
+                markTodo(id);
+              };
+
+              const handleClickStatus = (e: MouseEvent<HTMLDivElement>) => {
+                const target = e.target as typeof e.target & {
+                  getAttribute: (a: string) => string;
                 };
+                if (
+                  target.getAttribute &&
+                  target.getAttribute('name') !== 'mark'
+                ) {
+                  setStatus(id);
+                  todoFilter(query);
+                }
+              };
 
-                const handleClickMark = () => {
-                  markTodo(id);
-                };
-
-                const handleClickStatus = (e: MouseEvent<HTMLDivElement>) => {
-                  const target = e.target as typeof e.target & {
-                    getAttribute: (a: string) => string;
-                  };
-                  if (
-                    target.getAttribute &&
-                    target.getAttribute('name') !== 'mark'
-                  ) {
-                    setStatus(id);
-                    todoFilter(query);
-                  }
-                };
-
-                return (
-                  <TodoItem
-                    handleClickDel={handleClickDel}
-                    handleClickMark={handleClickMark}
-                    handleClickStatus={handleClickStatus}
-                    key={id}
-                    id={id}
-                    title={title}
-                    mark={mark}
-                    status={status}
-                    count={count}
-                  />
-                );
-              })
-          : null}
-      </div>
-    </>
+              return (
+                <TodoItem
+                  handleClickDel={handleClickDel}
+                  handleClickMark={handleClickMark}
+                  handleClickStatus={handleClickStatus}
+                  key={id}
+                  id={id}
+                  title={title}
+                  mark={mark}
+                  status={status}
+                  count={count}
+                />
+              );
+            })
+        : null}
+    </div>
   );
 });
 

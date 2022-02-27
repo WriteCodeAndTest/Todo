@@ -1,11 +1,10 @@
 let id;
 describe('API tests', () => {
-  it('GET check get all todos from db | empty array', () => {
+  it('GET check get all todos from db', () => {
     cy.request('GET', 'https://cryptic-ravine-29648.herokuapp.com/todos').then(
       (res) => {
         expect(res).to.have.property('status', 200);
         expect(res.body).to.not.null;
-        expect(res.body).to.have.length(0);
       },
     );
   });
@@ -22,14 +21,13 @@ describe('API tests', () => {
     });
   });
 
-  it('GET check get all todos from db | exist 1 todo', () => {
+  it('GET check get all todos from db | 1 has been added', () => {
     cy.request('GET', 'https://cryptic-ravine-29648.herokuapp.com/todos').then(
       (res) => {
         id = res.body[0]._id;
-
         expect(res).to.have.property('status', 200);
         expect(res.body).to.not.null;
-        expect(res.body).to.have.length(1);
+        expect(res.body[0]).to.have.property('title', 'Todo this');
       },
     );
   });

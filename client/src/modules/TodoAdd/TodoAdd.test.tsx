@@ -19,6 +19,9 @@ describe('TodoApp component', () => {
     it('todoAddField check change handler was called after type', () => {
       const { getByTestId } = render(<App />);
       const todoAddField = getByTestId('todoAddField');
+      const todoAddBtn = getByTestId('todoAddBtn');
+
+      expect(todoAddBtn).toBeDisabled();
 
       userEvent.type(todoAddField, 'Press Enter');
       expect(todoAddField).toHaveValue('Press Enter');
@@ -35,28 +38,6 @@ describe('TodoApp component', () => {
       userEvent.type(todoAddField, 'Click on button');
 
       expect(todoAddBtn).not.toBeDisabled();
-    });
-
-    it('todoAddBtn check click handler was called after click', () => {
-      const { getByTestId } = render(<App />);
-      const todoAddField = getByTestId('todoAddField');
-      const todoAddBtn = getByTestId('todoAddBtn');
-
-      userEvent.type(todoAddField, 'Click on button');
-      userEvent.click(todoAddBtn);
-
-      expect(todoAddField).not.toHaveValue('Click on button');
-    });
-
-    it('todoAddBtn check button state is disabled when textbox is empty', () => {
-      const { getByTestId } = render(<App />);
-      const todoAddField = getByTestId('todoAddField');
-      const todoAddBtn = getByTestId('todoAddBtn');
-
-      userEvent.type(todoAddField, 'Click on button');
-      userEvent.click(todoAddBtn);
-
-      expect(todoAddBtn).toBeDisabled();
     });
   });
 });

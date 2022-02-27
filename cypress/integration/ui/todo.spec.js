@@ -17,10 +17,6 @@ describe('UI tests', () => {
     cy.visit('/');
   });
 
-  after(() => {
-    getDeleteBtn().first().should('be.visible').click();
-  });
-
   it('todoItem check component has been created', () => {
     cy.wait(delay);
 
@@ -57,12 +53,12 @@ describe('UI tests', () => {
   });
 
   it('todoItem check change todo status on done', () => {
-    getTodoAddField().type('Todo status').should('be.value', 'Todo status');
-    getAddBtn().click();
-
     cy.wait(delay);
 
     getTodoItem().first().should('have.attr', 'data-status', 'false').click();
+
+    cy.wait(delay);
+
     getTodoItem().should('have.attr', 'data-status', 'true');
   });
 
@@ -94,6 +90,8 @@ describe('UI tests', () => {
     cy.wait(delay);
 
     getDeleteBtn().first().should('be.visible').click();
+
+    cy.wait(delay);
 
     cy.contains('Todo status').should('not.exist');
   });

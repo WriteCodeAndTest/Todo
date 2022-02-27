@@ -50,11 +50,7 @@ describe('TodoApp component', () => {
 
     it('todoAddBtn check button state is disabled when textbox is empty', () => {
       const { getByTestId } = render(<App />);
-      const todoAddField = getByTestId('todoAddField');
       const todoAddBtn = getByTestId('todoAddBtn');
-
-      userEvent.type(todoAddField, 'Click on button');
-      userEvent.click(todoAddBtn);
 
       expect(todoAddBtn).toBeDisabled();
     });
